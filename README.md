@@ -45,13 +45,13 @@ cd $PROJECT_ROOT
 
 # Example 1: sorted by gender (females before males)
 # then by last name ascending.
-./bin/sort resources/data --gender asc --name asc
+./bin/sort-file resources/data.csv --gender asc --name asc
 
 # Example 2: sorted by birth date, ascending
-./bin/sort resources/data --birthdate asc # print sorted by date of birth
+./bin/sort-file resources/data.csv --birthdate asc # print sorted by date of birth
 
 # Example 3: sorted by last name, descending
-./bin/sort resources/data --name desc
+./bin/sort-file resources/data.csv --name desc
 ```
 
 ### Using with the REST API
@@ -66,7 +66,9 @@ cd $PROJECT_ROOT
 
 # this helper script calls the POST endpoint for each line of the file
 # to load all the data in
-./bin/load resources/data
+./bin/load resources/data.csv
+./bin/load resources/data.psv
+./bin/load resources/data.ssv
 
 # Example 1: request records sorted by gender
 ./bin/sort-records gender

@@ -19,7 +19,7 @@
             (let [data (read/using-format input-format line)]
               (db/insert-record data)
               {:status 201
-               :body (format "inserted record for %s" (:last-name data))})
+               :body (format "inserted record for %s\n" (:last-name data))})
             {:status 400
              :body "invalid input format"})))
 
