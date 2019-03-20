@@ -45,9 +45,3 @@
                     (print/using-format (or (:output-format options)
                                             input-format)
                                         row))))))
-
-
-#_(reduce-kv (fn [r k v]
-             (assoc r k (keyword v)))
-           {}
-           options) ; keywordize

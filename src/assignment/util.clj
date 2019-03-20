@@ -12,8 +12,10 @@
   ;; working around it with the above hack.
   #_(tf/parse (tf/formatter "MM/dd/yyyy")))
 
+(defn unparse-date [date]
+  (tf/unparse (tf/formatter "MM/dd/yyyy") date))
+
 (defn unparse-dates [rows]
   (map (fn [item]
-         (update item :birthdate
-                 #(tf/unparse (tf/formatter "MM/dd/yyyy") %)))
+         (update item :birthdate unparse-date))
        rows))
