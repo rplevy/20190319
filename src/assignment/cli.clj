@@ -21,14 +21,13 @@
   (when args
     (let [{:keys [options errors arguments]}
           (parse-opts args
-                      [["-g" "--gender SORT-DIR" "gender sort direction"
+                      [["-s" "--sort-field SORT-FIELD" "sort field"
                         :parse-fn keyword
-                        :validate [#{:asc :desc} "Must be asc or desc"]]
-                       ["-b" "--birthdate SORT-DIR" "birthdate sort direction"
+                        :validate [#{:gender :name :birthdate}
+                                   "Must be gender, name, or birthdate"]]
+                       ["-d" "--sort-dir SORT-DIR" "sort direction"
                         :parse-fn keyword
-                        :validate [#{:asc :desc} "Must be asc or desc"]]
-                       ["-n" "--name SORT-DIR" "last name sort direction"
-                        :parse-fn keyword
+                        :default :asc
                         :validate [#{:asc :desc} "Must be asc or desc"]]
                        ["-o" "--output-format FORMAT" "output format"
                         :parse-fn keyword

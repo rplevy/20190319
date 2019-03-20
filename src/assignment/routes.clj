@@ -27,18 +27,21 @@
        {:status 200
         :headers {"Content-Type" "application/json"}
         :body (json-response
-               (sort/by {:gender :asc} @db/db))})
+               (sort/by {:sort-field :gender
+                         :sort-dir :asc} @db/db))})
 
   (GET "/records/birthdate" request
        {:status 200
         :headers {"Content-Type" "application/json"}
         :body (json-response
-               (sort/by {:birthdate :asc} @db/db))})
+               (sort/by {:sort-field :birthdate
+                         :sort-dir :asc} @db/db))})
 
   (GET "/records/name" request
        {:status 200
         :headers {"Content-Type" "application/json"}
         :body (json-response
-               (sort/by {:last-name :asc} @db/db))})
+               (sort/by {:sort-field :last-name
+                         :sort-dir :asc} @db/db))})
 
   (route/not-found "Route not found"))

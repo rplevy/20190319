@@ -17,9 +17,8 @@
            data))
 
 (defn by
-  [fields data]
-  (let [[k v] (first fields)
-        comparator (direction-string->comparator v)]
-    (if (= k :gender)
+  [{:keys [sort-field sort-dir]} data]
+  (let [comparator (direction-string->comparator sort-dir)]
+    (if (= sort-field :gender)
       (sort-by-gender comparator data)
-      (sort-by k comparator data))))
+      (sort-by sort-field comparator data))))
