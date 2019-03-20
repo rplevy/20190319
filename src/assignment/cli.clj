@@ -1,6 +1,7 @@
 (ns assignment.cli
   (:require [clojure.string :as str]
             [clojure.tools.cli :refer [parse-opts]]
+            [assignment.cli.print :as print]
             [assignment.read :as read]
             [assignment.sort :as sort]))
 
@@ -21,14 +22,33 @@
     (let [{:keys [options errors arguments]}
           (parse-opts args
                       [["-g" "--gender SORT-DIR" "gender sort direction"
-                        :validate [#{"asc" "desc"} "Must be asc or desc"]]
+                        :parse-fn keyword
+                        :validate [#{:asc :desc} "Must be asc or desc"]]
                        ["-b" "--birthdate SORT-DIR" "birthdate sort direction"
-                        :validate [#{"asc" "desc"} "Must be asc or desc"]]
+                        :parse-fn keyword
+                        :validate [#{:asc :desc} "Must be asc or desc"]]
                        ["-n" "--name SORT-DIR" "last name sort direction"
-                        :validate [#{"asc" "desc"} "Must be asc or desc"]]
+                        :parse-fn keyword
+                        :validate [#{:asc :desc} "Must be asc or desc"]]
+                       ["-o" "--output-format FORMAT" "output format"
+                        :parse-fn keyword
+                        :validate [#{:pipe-delimited
+                                     :space-delimited
+                                     :comma-delimited}
+                                   "must be a valid format"]]
                        ["-h" "--help"]])
           file-name (first arguments)
           input-format (file-ext->input-fmt (file-ext file-name))]
       (cond errors (doseq [e errors] (println e))
             (not input-format) (println "unsupported file type")
-            :else (sort/by options (read-file input-format file-name))))))
+            :else (doseq [row (sort/by options
+                                       (read-file input-format file-name))]
+                    (print/using-format (or (:output-format options)
+                                            input-format)
+                                        row))))))
+
+
+#_(reduce-kv (fn [r k v]
+             (assoc r k (keyword v)))
+           {}
+           options) ; keywordize

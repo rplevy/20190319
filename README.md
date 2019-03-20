@@ -51,6 +51,14 @@ cd $PROJECT_ROOT
 ./bin/sort-file resources/data.csv --name desc
 ```
 
+An output format can be given, to print the output in any of the three
+formats.  If no `--output-format` is provided then the input-format
+(detected based on file extension) is used as the output format.
+
+```
+./bin/sort-file resources/data.csv --name desc --output-format pipe-delimited
+```
+
 ### Using with the REST API
 
 ```
@@ -68,13 +76,13 @@ cd $PROJECT_ROOT
 ./bin/load resources/data.ssv
 
 # Example 1: request records sorted by gender
-./bin/sort-records gender
+./bin/sort-records gender | jq
 
 # Example 2: request records sorted by birthdate
-./bin/sort-records birthdate
+./bin/sort-records birthdate | jq
 
 # Example 3: request records sorted by name
-./bin/sort-records birthdate
+./bin/sort-records birthdate | jq
 
 ```
 
