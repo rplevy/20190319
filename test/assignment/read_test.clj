@@ -23,4 +23,10 @@
           :favorite-color "turquoise"
           :birthdate "9/8/2010"}
          (base/using-format :space-delimited
-                            "Davis Emily female turquoise 9/8/2010"))))
+                            "Davis Emily female turquoise 9/8/2010")))
+  (is (= {:first-name "Emily"
+          :last-name "Davis"
+          :gender "female"
+          :favorite-color "turquoise"
+          :birthdate "9/8/2010"}
+         (base/items->map ["Davis" "Emily" "female" "turquoise" "9/8/2010"]))))
