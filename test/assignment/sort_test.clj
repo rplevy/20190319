@@ -35,7 +35,7 @@
            :gender "male"
            :favorite-color "beige"
            :birthdate "5/2/1975"}]
-         (base/by {:gender :asc :last-name :asc} test-data)))
+         (base/by {:gender :asc} test-data)))
   (is (= [{:first-name "Freddie"
            :last-name "Wilson"
            :gender "male"

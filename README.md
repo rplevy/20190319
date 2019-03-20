@@ -18,14 +18,11 @@ data, and the other is to start the service, load data in, and make
 requests for sorted data.
 
 The direct command-line use is handy if you just want to pass a file
-of data in and see it printed out in sorted order.  Also the direct
-CLI supports composing sort arguments, whereas the REST service does
-not.
-
-The REST service usage will be more appropriate for those who wish to
-accumulate a sizable amount of data over time, perhaps from different
-users.  Also, since it responds with JSON, it's more convenient for
-programs as consumers, such as web front ends.
+of data in and see it printed out in sorted order. The REST service
+usage will be more appropriate for those who wish to accumulate a
+sizable amount of data over time, perhaps from different users.  Also,
+since it responds with JSON, it's more convenient for programs as
+consumers, such as web front ends.
 
 Note: the service does not employ a persistent datastore, so any data
 loaded into it will be lost when the service is stopped.

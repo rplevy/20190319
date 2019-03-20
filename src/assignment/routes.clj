@@ -39,6 +39,6 @@
        {:status 200
         :headers {"Content-Type" "application/json"}
         :body (json-response
-               (sort/by {:name :asc} @db/db))})
+               (sort/by {:last-name :asc} @db/db))})
 
   (route/not-found "Route not found"))
