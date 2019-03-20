@@ -8,4 +8,4 @@
   (is (= :space-delimited (base/file-ext->input-fmt "ssv")))
   (is (= :comma-delimited (base/file-ext->input-fmt "csv")))
   (is (not (base/file-ext->input-fmt "tsv")))
-  (is (= 500000 (count (base/read-file :pipe-delimited "resources/data.psv")))))
+  (is (= 50000 (count (base/read-file :pipe-delimited "resources/data.psv")))))

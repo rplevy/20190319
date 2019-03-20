@@ -1,6 +1,8 @@
 (ns assignment.read
   "Read input data in three supported formats"
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [assignment.util :as util]
+            [clj-time.format :as tf]))
 
 (defmulti using-format (fn [input-format line] input-format))
 
@@ -9,7 +11,7 @@
    :first-name first-name
    :gender gender
    :favorite-color favorite-color
-   :birthdate birthdate})
+   :birthdate (util/parse-date birthdate)})
 
 (defmethod using-format :pipe-delimited [_ line]
   (items->map (str/split line #"\s*\|\s*")))

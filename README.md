@@ -42,13 +42,13 @@ cd $PROJECT_ROOT
 
 # Example 1: sorted by gender (females before males)
 # then by last name ascending.
-./bin/sort-file resources/data.csv --gender asc --name asc
+./bin/sort-file resources/data.csv --sort-field gender --sort-dir asc
 
 # Example 2: sorted by birth date, ascending
-./bin/sort-file resources/data.csv --birthdate asc # print sorted by date of birth
+./bin/sort-file resources/data.csv --sort-field birthdate --sort-dir asc
 
 # Example 3: sorted by last name, descending
-./bin/sort-file resources/data.csv --name desc
+./bin/sort-file resources/data.csv --sort-field last-name --sort-dir desc
 ```
 
 An output format can be given, to print the output in any of the three

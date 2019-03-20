@@ -23,8 +23,8 @@
           (parse-opts args
                       [["-s" "--sort-field SORT-FIELD" "sort field"
                         :parse-fn keyword
-                        :validate [#{:gender :name :birthdate}
-                                   "Must be gender, name, or birthdate"]]
+                        :validate [#{:gender :last-name :birthdate}
+                                   "Must be gender, last-name, or birthdate"]]
                        ["-d" "--sort-dir SORT-DIR" "sort direction"
                         :parse-fn keyword
                         :default :asc

@@ -3,13 +3,14 @@
   (:require [assignment.db :as db]
             [assignment.read :as read]
             [assignment.sort :as sort]
+            [assignment.util :as util]
             [assignment.validate :as validate]
             [cheshire.core :as json]
             [compojure.core :refer :all]
             [compojure.route :as route]))
 
 (defn json-response [rows]
-  (json/generate-string {:results rows}))
+  (json/generate-string {:results (util/unparse-dates rows)}))
 
 (defroutes app
   (POST "/records" request

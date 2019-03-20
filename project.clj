@@ -1,10 +1,11 @@
 (defproject assignment "1.0.0"
   :description "assignment"
-  :url "http://127.0.0.1"
+  :url "http://127.0.0.1:3000"
   :main assignment.cli
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [org.clojure/tools.cli "0.4.1"]
                  [org.clojure/tools.logging "0.4.1"]
+                 [clj-time "0.15.0"]
                  [compojure "1.6.1"]
                  [cheshire "5.8.1"]]
   :profiles {:dev
