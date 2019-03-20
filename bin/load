@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cat $1 | while read line
+do curl -XPOST http://localhost:3000/records --data "$line"
+done
