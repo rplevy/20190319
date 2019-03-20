@@ -4,7 +4,7 @@
             [assignment.read :as read]
             [assignment.sort :as sort]))
 
-(defn read-file [file-name input-format]
+(defn read-file [input-format file-name]
   (map (partial read/using-format input-format)
        (str/split (slurp file-name) #"\n")))
 
@@ -17,17 +17,18 @@
   (last (str/split file-name #"\.")))
 
 (defn -main [& args]
-  (let [{:keys [options errors arguments]}
-        (parse-opts args
-                    [["-g" "--gender SORT-DIR" "gender sort direction"
-                      :validate [#{"asc" "desc"} "Must be asc or desc"]]
-                     ["-b" "--birthdate SORT-DIR" "birthdate sort direction"
-                      :validate [#{"asc" "desc"} "Must be asc or desc"]]
-                     ["-n" "--name SORT-DIR" "last name sort direction"
-                      :validate [#{"asc" "desc"} "Must be asc or desc"]]
-                     ["-h" "--help"]])
-        file-name (first arguments)
-        input-format (file-ext->input-fmt (file-ext file-name))]
-    (cond errors (doseq [e errors] (println e))
-          (not input-format) (println "unsupported file type")
-          :else (sort/by options (read-file file-name input-format)))))
+  (when args
+    (let [{:keys [options errors arguments]}
+          (parse-opts args
+                      [["-g" "--gender SORT-DIR" "gender sort direction"
+                        :validate [#{"asc" "desc"} "Must be asc or desc"]]
+                       ["-b" "--birthdate SORT-DIR" "birthdate sort direction"
+                        :validate [#{"asc" "desc"} "Must be asc or desc"]]
+                       ["-n" "--name SORT-DIR" "last name sort direction"
+                        :validate [#{"asc" "desc"} "Must be asc or desc"]]
+                       ["-h" "--help"]])
+          file-name (first arguments)
+          input-format (file-ext->input-fmt (file-ext file-name))]
+      (cond errors (doseq [e errors] (println e))
+            (not input-format) (println "unsupported file type")
+            :else (sort/by options (read-file input-format file-name))))))

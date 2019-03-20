@@ -24,15 +24,21 @@
              :body "invalid input format"})))
 
   (GET "/records/gender" request
-       (json-response
-        (sort/by {:gender :asc} @db/db)))
+       {:status 200
+        :headers {"Content-Type" "application/json"}
+        :body (json-response
+               (sort/by {:gender :asc} @db/db))})
 
   (GET "/records/birthdate" request
-       (json-response
-        (sort/by {:birthdate :asc} @db/db)))
+       {:status 200
+        :headers {"Content-Type" "application/json"}
+        :body (json-response
+               (sort/by {:birthdate :asc} @db/db))})
 
   (GET "/records/name" request
-       (json-response
-        (sort/by {:name :asc} @db/db)))
+       {:status 200
+        :headers {"Content-Type" "application/json"}
+        :body (json-response
+               (sort/by {:name :asc} @db/db))})
 
   (route/not-found "Route not found"))
